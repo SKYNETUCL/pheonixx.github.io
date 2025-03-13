@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV Channels</title>
+    
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/tv-style.css" rel="stylesheet">
+
+    <style>
+        /* Modern layout styles */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--light);
+        }
+
+        .content-wrapper {
+            flex: 1;
+            padding: 20px;
+        }
+
+        /* Improved header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Search and filter section */
+        .search-filter-section {
+            background: #fff;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        /* Channel grid layout */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Channel cards */
+        .channel-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .channel-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .channel-img {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            background: #f8f9fa;
+        }
+
+        .channel-img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .channel-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .channel-item:hover .channel-overlay {
+            opacity: 1;
+        }
+
+        .channel-text {
+            padding: 15px;
+        }
+
+        .channel-name {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .channel-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+            color: var(--secondary);
+        }
+
+        /* Category headers */
+        .category-header {
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-line {
+            flex: 1;
+            height: 2px;
+            background: var(--primary);
+            opacity: 0.1;
+        }
+
+        .category-count {
+            background: var(--primary);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+        }
+
+        /* Filter buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 5px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            white-space: nowrap;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .channel-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+
+            .channel-text {
+                padding: 10px;
+            }
+
+            .channel-name {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner -->
+    <div id="spinner" class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- Header -->
+        <div class="sticky-header">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-2">
+                <div class="container-fluid px-4">
+                    <a href="index.html" class="navbar-brand d-flex align-items-center">
+                        <i class="fas fa-tv text-primary me-2"></i>
+                        <h1 class="m-0 text-primary">Live TV</h1>
+                    </a>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Home
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <div class="container-fluid px-4">
+                    <div class="row g-3">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="input-group">
+                                <input type="text" id="channelSearch" class="form-control" placeholder="Search channels...">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6">
+                            <div class="filter-buttons" id="filterButtons">
+                                <button class="btn btn-outline-primary filter-btn active" data-filter="all">
+                                    All Channels
+                                </button>
+                                <!-- Filter buttons will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <div class="container-fluid px-4">
+                <div id="channelGrid">
+                    <!-- Channel groups will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Channel Scripts -->
+    <script src="js/channels-more.js"></script>
+</body>
+
+</html> 

@@ -1,0 +1,174 @@
+/* Base Layout */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #282c34;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#epg-container {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    background-color: #282c34;
+    scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+    scrollbar-width: thin;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    color: #FFF;
+    background-color: #282c34;
+    position: absolute;
+    min-width: max-content;
+    width: 100%;
+}
+
+/* Channel Column */
+.channelBox {
+    width: 200px;
+    background-color: #000;
+}
+
+.channelBoxName {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.channelBoxImage {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.pinned-channel-box {
+    position: sticky;
+    left: 0;
+    z-index: 1000;
+    background-color: #000;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Timeline Header */
+.thead {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #000;
+}
+
+.row {
+    display: flex;
+    min-height: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pinned-timeline {
+    z-index: 1000;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timelineDay {
+    font-weight: 700;
+    padding: 4px 8px;
+}
+
+.timelineTime {
+    padding: 4px 8px;
+    opacity: 0.7;
+}
+
+/* Programs */
+.program {
+    position: absolute;
+    background-color: #282c34;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    overflow: hidden;
+    height: calc(100% - 10px);
+    margin: 4px 0;
+    transition: left 0.5s ease;
+}
+
+.program + .program {
+    margin-left: 0;
+}
+
+.program.now {
+    background-color: #5a93a3;
+    border-color: rgba(255, 255, 255, 0.2);
+    left: 200px !important;
+    margin-left: 0 !important;
+}
+
+.program-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.program-time {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+/* Time Indicator */
+#vertical-red-line {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: #ff3b30;
+    z-index: 5;
+    box-shadow: 0 0 8px rgba(255, 59, 48, 0.4);
+}
+
+/* Grid Layout */
+.cell {
+    height: 60px;
+    min-width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Scrollbars */
+#epg-container::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+#epg-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#epg-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
+
+#epg-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Add these rules */
+.tbody {
+    display: flex;
+    flex-direction: column;
+}
+
+.programs-container {
+    position: relative;
+    height: 60px;
+    flex: 1;
+    min-width: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}

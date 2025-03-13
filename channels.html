@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Live TV - All Channels</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Live TV streaming, watch TV online, live channels" name="keywords">
+    <meta content="Watch your favorite TV channels live online" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Live TV Specific Stylesheet -->
+    <link href="css/tv-style.css" rel="stylesheet">
+</head>
+
+<body class="channels-page">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Header Start -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a href="index.html" class="navbar-brand d-flex align-items-center">
+                    <i class="fas fa-tv text-primary"></i>
+                    <h1>Live TV</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="channels.html" class="nav-item nav-link active">
+                            <i class="fas fa-tv"></i>
+                            <span>Channels</span>
+                        </a>
+                        <a href="guide.html" class="nav-item nav-link">
+                            <i class="fas fa-calendar"></i>
+                            <span>Guide</span>
+                        </a>
+                        <a href="favorites.html" class="nav-item nav-link">
+                            <i class="fas fa-heart"></i>
+                            <span>Favorites</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-title">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <h2>Live TV Channels</h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb text-uppercase mb-0">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Channels</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Search and Filter Section Start -->
+    <div class="container">
+        <div class="search-filter-section">
+            <div class="row g-3">
+                <div class="col-lg-6 col-md-12">
+                    <div class="search-box">
+                        <input type="text" id="channelSearch" class="form-control" placeholder="Search channels...">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="category-filters d-flex gap-2 overflow-auto">
+                        <button class="btn btn-primary active" data-category="all">
+                            <i class="fas fa-globe"></i>
+                            <span>All</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="sports">
+                            <i class="fas fa-futbol"></i>
+                            <span>Sports</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="movies">
+                            <i class="fas fa-film"></i>
+                            <span>Movies</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="entertainment">
+                            <i class="fas fa-tv"></i>
+                            <span>TV</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="news">
+                            <i class="fas fa-newspaper"></i>
+                            <span>News</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="documentary">
+                            <i class="fas fa-video"></i>
+                            <span>Docs</span>
+                        </button>
+                        <button class="btn btn-outline-primary" data-category="kids">
+                            <i class="fas fa-child"></i>
+                            <span>Kids</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search and Filter Section End -->
+
+    <!-- Channels Start -->
+    <div class="container-fluid py-4">
+        <div class="container">
+            <!-- Today's Highlights -->
+            <div class="mb-5">
+                <h2 class="text-dark mb-4">Today's Highlights</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="highlight-card bg-light rounded p-4">
+                            <div class="highlight-time text-primary mb-2">Live Now</div>
+                            <div class="highlight-badge sports mb-2">Sports</div>
+                            <h5 class="mb-2">Formula 1: Monaco Grand Prix</h5>
+                            <p class="mb-2">Live coverage of the most prestigious race in F1</p>
+                            <div class="highlight-channel text-primary">On Sky Sports F1</div>
+                            <div class="highlight-viewers">
+                                <i class="fas fa-users"></i>
+                                <span>15.2K watching</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="highlight-card bg-light rounded p-4">
+                            <div class="highlight-time text-primary mb-2">Starting in 30min</div>
+                            <div class="highlight-badge entertainment mb-2">Entertainment</div>
+                            <h5 class="mb-2">MasterChef: Season Finale</h5>
+                            <p class="mb-2">Three finalists compete for the grand prize</p>
+                            <div class="highlight-channel text-primary">On Food Network</div>
+                            <div class="highlight-viewers">
+                                <i class="fas fa-users"></i>
+                                <span>8.5K watching</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="highlight-card bg-light rounded p-4">
+                            <div class="highlight-time text-primary mb-2">21:00 GMT</div>
+                            <div class="highlight-badge movies mb-2">Movies</div>
+                            <h5 class="mb-2">Premiere: The Last Frontier</h5>
+                            <p class="mb-2">Exclusive first showing of the sci-fi blockbuster</p>
+                            <div class="highlight-channel text-primary">On Sky Cinema Premiere</div>
+                            <div class="highlight-viewers">
+                                <i class="fas fa-users"></i>
+                                <span>12.7K watching</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Channel Grid -->
+            <div class="channel-grid-container">
+                <div id="channelGrid" class="channel-grid">
+                    <!-- Loading placeholder -->
+                    <div class="channel-grid-loading text-center py-5">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading channels...</span>
+                        </div>
+                        <p class="lead mb-0">Loading channels...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-5">
+                <button id="loadMoreBtn" class="btn btn-primary py-3 px-5">
+                    Load More Channels
+                    <i class="fas fa-chevron-down ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Channels End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <a class="btn btn-link" href="index.html">
+                        <i class="fas fa-home"></i>Home
+                    </a>
+                    <a class="btn btn-link" href="channels.html">
+                        <i class="fas fa-tv"></i>All Channels
+                    </a>
+                    <a class="btn btn-link" href="guide.html">
+                        <i class="fas fa-calendar"></i>TV Guide
+                    </a>
+                    <a class="btn btn-link" href="favorites.html">
+                        <i class="fas fa-heart"></i>Favorites
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Popular Categories</h5>
+                    <a class="btn btn-link" href="#" data-category="sports">
+                        <i class="fas fa-futbol"></i>Sports
+                    </a>
+                    <a class="btn btn-link" href="#" data-category="movies">
+                        <i class="fas fa-film"></i>Movies
+                    </a>
+                    <a class="btn btn-link" href="#" data-category="entertainment">
+                        <i class="fas fa-tv"></i>Entertainment
+                    </a>
+                    <a class="btn btn-link" href="#" data-category="news">
+                        <i class="fas fa-newspaper"></i>News
+                    </a>
+                    <a class="btn btn-link" href="#" data-category="documentary">
+                        <i class="fas fa-video"></i>Documentary
+                    </a>
+                    <a class="btn btn-link" href="#" data-category="kids">
+                        <i class="fas fa-child"></i>Kids
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Help & Support</h5>
+                    <a class="btn btn-link" href="#">
+                        <i class="fas fa-question-circle"></i>FAQs
+                    </a>
+                    <a class="btn btn-link" href="#">
+                        <i class="fas fa-envelope"></i>Contact Us
+                    </a>
+                    <a class="btn btn-link" href="#">
+                        <i class="fas fa-headset"></i>Technical Support
+                    </a>
+                    <a class="btn btn-link" href="#">
+                        <i class="fas fa-flag"></i>Report an Issue
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Subscribe for updates about new channels and features.</p>
+                    <div class="position-relative">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
+                            Subscribe
+                            <i class="fas fa-paper-plane ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a href="#">Live TV</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a href="#">Your Company</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+    <!-- Channel Scripts -->
+    <script src="js/channels.js"></script>
+</body>
+
+</html> 

@@ -1,0 +1,269 @@
+/* EPG Section Styles */
+.channel-epg-section {
+    margin-top: 2rem;
+    background: var(--bs-dark);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.epg-programs {
+    position: relative;
+    min-height: 200px;
+}
+
+/* Program Item Styles */
+.epg-program {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.04));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.epg-program:hover {
+    background: linear-gradient(to right, rgba(13, 110, 253, 0.05), rgba(13, 110, 253, 0.02));
+}
+
+.epg-program.current {
+    background: linear-gradient(to right, rgba(13, 110, 253, 0.1), rgba(13, 110, 253, 0.05));
+}
+
+.epg-program.current::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--bs-primary);
+    box-shadow: 0 0 20px rgba(13, 110, 253, 0.4);
+}
+
+/* Time Display */
+.epg-time {
+    flex: 0 0 140px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Nunito', sans-serif;
+}
+
+.epg-time i {
+    color: var(--bs-primary);
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.epg-time .time {
+    color: var(--bs-light);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.epg-time .duration {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Program Info */
+.epg-info {
+    flex: 1;
+    padding-left: 1.5rem;
+    min-width: 0;
+}
+
+.epg-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.epg-title {
+    color: var(--bs-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Live Badge */
+.live-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(45deg, var(--bs-primary), #0d8bfd);
+    color: var(--bs-white);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    white-space: nowrap;
+}
+
+.live-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Category */
+.epg-category {
+    display: inline-block;
+    color: var(--bs-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    background: rgba(13, 110, 253, 0.1);
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+}
+
+/* Description */
+.epg-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* Loading State */
+.epg-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    gap: 1.5rem;
+    backdrop-filter: blur(4px);
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid rgba(13, 110, 253, 0.15);
+    border-top-color: var(--bs-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.loading-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Error State */
+.epg-program.error,
+.epg-program.no-info {
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+    background: transparent;
+}
+
+.epg-program.error .epg-title {
+    color: var(--bs-danger);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .epg-program {
+        padding: 1.25rem;
+    }
+
+    .epg-time {
+        flex: 0 0 120px;
+        padding-right: 1.25rem;
+    }
+
+    .epg-info {
+        padding-left: 1.25rem;
+    }
+
+    .epg-title {
+        font-size: 1rem;
+    }
+
+    .epg-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+    }
+}
+
+@media (max-width: 576px) {
+    .epg-program {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .epg-time {
+        flex: none;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 1rem;
+    }
+
+    .epg-time .duration {
+        margin-left: auto;
+    }
+
+    .epg-info {
+        padding-left: 0;
+    }
+
+    .epg-title-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .live-badge {
+        align-self: flex-start;
+    }
+} 

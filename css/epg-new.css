@@ -1,0 +1,142 @@
+.epg-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.epg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.epg-title {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.epg-title i {
+    color: var(--primary);
+}
+
+.epg-timezone {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.epg-timezone i {
+    color: var(--primary);
+}
+
+.epg-content {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 1rem;
+}
+
+.epg-program {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.epg-program:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.program-time {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.program-title {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.program-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.epg-loading {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.epg-loading .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+.epg-error {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.epg-error i {
+    font-size: 2rem;
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+/* Custom scrollbar for EPG content */
+.epg-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.epg-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.epg-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.epg-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .epg-section {
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+
+    .epg-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .epg-content {
+        max-height: 300px;
+    }
+
+    .epg-program {
+        padding: 0.75rem;
+    }
+} 

@@ -1,0 +1,118 @@
+/* Global Styles */
+:root {
+    --primary-color: #FF6F61;
+    --primary-dark: #E85A4F;
+    --secondary-color: #2B2E4A;
+    --text-primary: #2B2E4A;
+    --text-secondary: #6C7293;
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-dark: #1A1C23;
+    --border-color: #E1E1E8;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-secondary);
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.back-button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.channel-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.channel-card:hover {
+    transform: translateY(-5px);
+}
+
+.channel-image {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.channel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.channel-title {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.watch-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.watch-button:hover {
+    background-color: #0056b3;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+}
+
+.error {
+    text-align: center;
+    padding: 20px;
+    color: #dc3545;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .channels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .channel-image {
+        height: 120px;
+    }
+    
+    .channel-title {
+        font-size: 14px;
+    }
+} 
